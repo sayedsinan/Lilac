@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lilac_machine/view/messages_page.dart';
 import 'package:lilac_machine/view/style/color.dart';
+import 'package:lilac_machine/view/style/text_style.dart';
 import 'package:lilac_machine/view/widget/custom_button.dart';
 import 'package:lilac_machine/controller/auth_controller.dart';
 
 class OtpVerificationPage extends StatelessWidget {
-  OtpVerificationPage({super.key});
+  const OtpVerificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +51,12 @@ class OtpVerificationPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  // Title
-                  const Center(
+
+                   Center(
                     child: Text(
                       'Enter your verification\ncode',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                      style: jostTextStyle(fontSize:28,fontWeight: FontWeight.w600,color: Colors.black )
                     ),
                   ),
                   const SizedBox(height: 24),
@@ -131,28 +127,31 @@ class OtpVerificationPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
 
-                  Padding(padding: EdgeInsets.only(left: 10),child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Didn't get anything? No worries, let's try again.",
-                        style: TextStyle(fontSize: 14, color: Colors.black54),
-                      ),
-                      const SizedBox(height: 4),
-                      GestureDetector(
-                        onTap: () {},
-                        child: const Text(
-                          'Resent',
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Didn't get anything? No worries, let's try again.",
+                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                        ),
+                        const SizedBox(height: 4),
+                        GestureDetector(
+                          onTap: () {},
+                          child: const Text(
+                            'Resent',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),)
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -165,7 +164,12 @@ class OtpVerificationPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: CustomButton(
                   text: 'Verify',
-                  onPressed: () =>Get.to(()=>MessagesPage()),
+                  onPressed: () {
+                    authController.verifyOtp(
+                      // authController.phoneController.text,
+                      // authController.getOtp(),
+                    );
+                  },
                   height: 56,
                   width: double.infinity,
                   backgroundColor: const Color(0xFFE6446E),

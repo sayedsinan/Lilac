@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lilac_machine/view/otp_verification_page.dart';
 import 'package:lilac_machine/view/style/color.dart';
+import 'package:lilac_machine/view/style/text_style.dart';
 import 'package:lilac_machine/view/widget/custom_button.dart';
 import 'package:lilac_machine/controller/auth_controller.dart';
 
@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = Get.put(AuthController());
+    final AuthController authController = Get.find<AuthController>();
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -49,15 +49,11 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  const Center(
+                   Center(
                     child: Text(
                       'Enter your phone\nnumber',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                      style: jostTextStyle(fontSize:28,fontWeight: FontWeight.w600,color: Colors.black )
                     ),
                   ),
                   const SizedBox(height: 40),
@@ -142,7 +138,7 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-          
+
             Positioned(
               left: 0,
               right: 0,
@@ -151,7 +147,9 @@ class LoginPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: CustomButton(
                   text: 'Next',
-                  onPressed: () => Get.to(() => OtpVerificationPage()),
+                  onPressed: () {
+                    authController.sendOtp(authController.countryCode+authController.phoneController.text);
+                  },
                   height: 56,
                   width: double.infinity,
                   backgroundColor: const Color(0xFFE6446E),
